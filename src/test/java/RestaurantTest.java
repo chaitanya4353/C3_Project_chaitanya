@@ -69,14 +69,14 @@ class RestaurantTest {
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     @Test
-    public void order_value_should_be_600_when_SweetCornSoup_and_Vegetable_lasagne_are_selected() throws restaurantNotFoundException {
+    public void order_value_should_be_388_when_SweetCornSoup_and_Vegetable_lasagne_are_selected() throws restaurantNotFoundException {
         //Arrange
         List<String> selectedMenuItems = Arrays.asList("Sweet corn soup", "Vegetable lasagne");
 
         //Act
-        int cartValue = restaurant.calculateOrderValue(selectedMenuItems);
+        int cartValue = restaurant.calculateCartValue(selectedMenuItems);
 
         //Assert
-        assertEquals(600, cartValue);
+        assertEquals(388, cartValue);
     }
 }
