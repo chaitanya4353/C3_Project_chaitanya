@@ -64,4 +64,12 @@ public class Restaurant {
         return name;
     }
 
+    public int calculateOrderValue(List<String> selectedMenuItems){
+        int cartValue = 0;
+        for (String selectedMenuItem : selectedMenuItems) {
+            cartValue += findItemByName(selectedMenuItem).getPrice();
+        }
+        return cartValue;
+    }
+
 }

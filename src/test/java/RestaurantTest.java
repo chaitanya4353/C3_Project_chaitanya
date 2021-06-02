@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +26,6 @@ class RestaurantTest {
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
-        //Arrange
         LocalTime timeBetweenOpeningAndClosingTime = LocalTime.parse("11:00:00");
         Restaurant spiedRestaurant = Mockito.spy(restaurant);
         Mockito.when(spiedRestaurant.getCurrentTime()).thenReturn(timeBetweenOpeningAndClosingTime);
@@ -35,7 +36,6 @@ class RestaurantTest {
 
     @Test
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time(){
-        //Arrange
         LocalTime timeAfterClosingTime = LocalTime.parse("23:00:00");
         Restaurant spiedRestaurant = Mockito.spy(restaurant);
         Mockito.when(spiedRestaurant.getCurrentTime()).thenReturn(timeAfterClosingTime);
@@ -67,4 +67,16 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void order_value_should_be_600_when_SweetCornSoup_and_Vegetable_lasagne_are_selected() throws restaurantNotFoundException {
+        //Arrange
+        List<String> selectedMenuItems = Arrays.asList("Sweet corn soup", "Vegetable lasagne");
+
+        //Act
+        int cartValue = restaurant.calculateOrderValue(selectedMenuItems);
+
+        //Assert
+        assertEquals(600, cartValue);
+    }
 }
